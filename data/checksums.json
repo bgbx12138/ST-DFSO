@@ -1,0 +1,85 @@
+{
+  "description": "Checksums of the published paper result files.",
+  "files": [
+    {
+      "file": "data/results/accepted_runs.json",
+      "sha256": "3266b1496e7b1909bcfbc4d9df8fbe6e99674ea1d45d780625eceafcecf10026"
+    },
+    {
+      "file": "data/results/experiment_record.json",
+      "sha256": "22383e05a8785687ea6fa3e51b646fb6313e0d433f7358f976c3bbf6c19bea07"
+    },
+    {
+      "file": "data/results/paper_tables/index.json",
+      "sha256": "5932ca5b56f35cc47f62ac7f4e27904658329a1c3b58a331c861dcf9b6c781fc"
+    },
+    {
+      "file": "data/results/paper_tables/main_table_1.csv",
+      "sha256": "65f7857d6530ee856a203dc9c14562f0d9a5f402d807a16583d5e3afba127563"
+    },
+    {
+      "file": "data/results/paper_tables/main_table_2.csv",
+      "sha256": "d57b11f8dff956c100e2549368617596ee14e710c0d276b23438dd087b1644fb"
+    },
+    {
+      "file": "data/results/paper_tables/main_table_3.csv",
+      "sha256": "1fe8f90dbe74a525eb6297368c07b297e5266687c6a863a13de38e8b42ae6bdf"
+    },
+    {
+      "file": "data/results/routes.json",
+      "sha256": "e9be6410050197c914029f0725b3c0d16149d5dbc1b28b284a7046de44b5bdd9"
+    },
+    {
+      "file": "data/results/Supplementary_Data_S1.csv",
+      "sha256": "434b1432014fcb71f6459bbf26b236dfbac13e2093ea598033230e3fa66b5b5f"
+    },
+    {
+      "file": "data/results/tables/CPU_COMPARISONS160.csv",
+      "sha256": "105e7a687ef142931fa458a917f65f4c983fa510b704596cd2b3bdd5d9963d94"
+    },
+    {
+      "file": "data/results/tables/CPU_COMPARISONS160_PUBLICATION.csv",
+      "sha256": "d5d9385097595c0444044216a9fe5cbe9514f147739125173cc1cf94395b3efc"
+    },
+    {
+      "file": "data/results/tables/FINAL_CROSS_GOAL_PAIRED75.csv",
+      "sha256": "b737ee2ef9ef32e46fd653801b31d687ee9f69245b6044c8fd3743cf720116fd"
+    },
+    {
+      "file": "data/results/tables/FINAL_CROSS_GOAL_ROWS1800.csv",
+      "sha256": "b5e807b09949f2a85680d9d63cdf12a8f50ec74c433e1e4dcd5f97ce4003458d"
+    },
+    {
+      "file": "data/results/tables/FINAL_CROSS_GOAL_SUMMARY100.csv",
+      "sha256": "a02f393bb481b705c3ee2a22ebf4b5fd8b6c732a40458a03dee72d70dc2904b6"
+    },
+    {
+      "file": "data/results/tables/FINAL_PAIRED75_PUBLICATION.csv",
+      "sha256": "7aae22edfcadc181b099becb549d0901cfb61498062050631e8c17c7c386b10d"
+    },
+    {
+      "file": "data/results/tables/final_route_metrics.csv",
+      "sha256": "086517435d6ff2c79f2027956c8aa9ca342d5f74c39a15cac5e70e03e91d5b21"
+    },
+    {
+      "file": "data/results/tables/FINAL_SELECTED_PUBLICATION15.csv",
+      "sha256": "44fe1a9ca1b27ebdc07b09e12403f332d75259f0db0b393f6a6f7dc90449b208"
+    },
+    {
+      "file": "data/results/tables/MAIN60_PUBLICATION15.csv",
+      "sha256": "cd235aa09058014d84bf2756e8baa028f8910ff65d825c406036b8e18b9b63ce"
+    },
+    {
+      "file": "data/results/tables/PLANNED_PAIRS2880.csv",
+      "sha256": "23c73f85aeb51e5d35d9a8858566d36e9e05df925cc8502dd0ad2fcc4606cb29"
+    },
+    {
+      "file": "data/results/tables/S6_DECOMPOSITION9.csv",
+      "sha256": "ff117fda62aabc46f46234c6118e317bb8713c97558a3fce41fbf504e2441083"
+    },
+    {
+      "file": "data/results/tables/STDFSO_FINAL_VS_INITIAL25_PUBLICATION.csv",
+      "sha256": "e167bddf3c5fbb68bbaf77b3522bc33c6f3fa2cdb33f9c60781251bce8eb2b05"
+    }
+  ]
+}

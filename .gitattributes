@@ -1,0 +1,8 @@
+# Keep scientific files byte-for-byte; internal integrity checks use their hashes.
+* -text
+
+# Human-maintained project documentation and build files use LF.
+*.md text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+pom.xml text eol=lf

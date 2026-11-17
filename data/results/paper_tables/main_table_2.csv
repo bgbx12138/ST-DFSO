@@ -1,0 +1,16 @@
+﻿Selected objective,Comparator,Mean gain (%),Median gain (%),W / T / L
+T,ACO,4.10,4.74,18 / 0 / 0
+T,IAFSA,5.44,5.70,18 / 0 / 0
+T,window ILS,0.79,0.12,9 / 0 / 9
+E,ACO,4.03,4.79,18 / 0 / 0
+E,IAFSA,5.44,5.69,18 / 0 / 0
+E,window ILS,0.66,0.21,11 / 1 / 6
+D,ACO,9.17,8.23,15 / 0 / 3
+D,IAFSA,8.59,2.70,11 / 0 / 7
+D,window ILS,2.18,3.94,11 / 0 / 7
+R,ACO,13.40,9.89,18 / 0 / 0
+R,IAFSA,11.91,8.50,18 / 0 / 0
+R,window ILS,1.10,6.19,11 / 0 / 7
+C,ACO,4.72,2.51,16 / 2 / 0
+C,IAFSA,3.94,1.85,13 / 2 / 3
+C,window ILS,−0.59,0.00,8 / 2 / 8

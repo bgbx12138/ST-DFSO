@@ -1,0 +1,42 @@
+{
+  "reference_scales": [
+    4.0,
+    1.59796433001491,
+    0.44687470279710395,
+    0.1859704277566732
+  ],
+  "reference_roles": [
+    "Literature-informed author-adopted dynamic roll working reference4deg; source DC convention unresolved",
+    "RMS of development EFD45/90 heading SD; data reference, not physical limit",
+    "RMS of development EFD45/90 lateral-velocity SD; data reference, not physical limit",
+    "RMS of development EFD45/90 longitudinal-velocity SD; data reference, not physical limit"
+  ],
+  "development_reference_cases": [
+    45,
+    90
+  ],
+  "heldout_cases_not_used_for_scaling": [
+    0,
+    180
+  ],
+  "heldout_not_blind_due_to_prior_exposure": true,
+  "component_order": [
+    "roll angle",
+    "wave-induced yaw angle",
+    "sway velocity",
+    "surge velocity"
+  ],
+  "units": [
+    "deg",
+    "deg",
+    "m/s",
+    "m/s"
+  ],
+  "relative_weights": [
+    1.5,
+    1.25,
+    1,
+    1
+  ],
+  "scope": "Research cost reference values, not physical safety limits or accident probabilities. Comparisons use published measurements, not a blind prospective validation."
+}

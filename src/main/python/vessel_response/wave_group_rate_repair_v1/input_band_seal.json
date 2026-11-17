@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-18",
+  "omega_cut_rad_s": 1.6575853494388417,
+  "omega_min_rad_s": 0.4,
+  "development": "head inputwaveperiod only",
+  "conditional_local_derivative": -0.7766609683101191,
+  "local_rank": 1,
+  "roll_parameters_updated": false,
+  "exact_EFD_spectrum_identified": false,
+  "wave_period_checks": {
+    "215": {
+      "wave_period_s": 4.78,
+      "source_wave_period_s": 4.78
+    },
+    "205": {
+      "wave_period_s": 5.48642477758168,
+      "source_wave_period_s": 5.47
+    },
+    "206": {
+      "wave_period_s": 8.605914724683878,
+      "source_wave_period_s": 8.14
+    },
+    "218": {
+      "wave_period_s": 25.294823267884173,
+      "source_wave_period_s": 21.69
+    }
+  },
+  "hash_protocol": "26ccd5ead179c65c99672382bc9825d9420e7147095d3be8b5fb9ac6aca9efc5"
+}

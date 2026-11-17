@@ -1,0 +1,6 @@
+numpy==2.0.2
+scipy==1.13.1
+capytaine==3.0.0
+threadpoolctl==3.6.0
+pandas==2.3.2
+psutil==7.2.2

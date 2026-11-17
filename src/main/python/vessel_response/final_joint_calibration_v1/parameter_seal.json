@@ -1,0 +1,18 @@
+{
+  "D_effective": 10375850.886222908,
+  "tau_effective_s": 0.7992500678093448,
+  "D_ratio": 1.1468685497685445,
+  "tau_ratio": 1.641133813904063,
+  "frozen_kappa": 0.3130553347630684,
+  "old_reference_parameters": {
+    "D": 9047114.325627739,
+    "tau": 0.4870109073604568,
+    "kappa": 0.3130553347630684
+  },
+  "chosen_evaluation_sha256": "3a1c86f20b76c0e8bfba874a095da15688bd9b2bd60a5a88fffb866fd62f5f6e",
+  "protocol_sha256": "11f07caac10c16632cb857fac8a9198d3ab559268a2b67278cf70253657323da",
+  "development_only": true,
+  "no_confirmation_used_for_fit": true,
+  "parameter_meaning": "overall equivalent input statistics, not identified physical fin/rudder loads",
+  "physical_validation_passed": false
+}

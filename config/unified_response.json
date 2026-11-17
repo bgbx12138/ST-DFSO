@@ -1,0 +1,24 @@
+{
+  "schema": "STDFSO_WAVE_HEADING_FOUR_COMPONENT_V1",
+  "components": [
+    "equivalent roll angle SD (deg)",
+    "first-order wave-induced heading angle SD (deg)",
+    "fixed-linear sway velocity SD (m/s)",
+    "fixed-linear surge velocity SD (m/s)"
+  ],
+  "heading_scope": "Intrinsic-wave-spectrum integration; excludes quadratic wave/roll forcing and slow course-keeping excursions. Not total heading SD.",
+  "sway_surge_scope": "Fixed linear horizontal transfer driven by the retained sampled wave, quadratic wave and prescribed roll forces; no nonlinear horizontal feedback closure.",
+  "roll_scope": "Retained Gaussian equivalent linear roll, calibrated coefficients unchanged.",
+  "dt_s": 0.125,
+  "record_s": 8192,
+  "discard_s": 512,
+  "seed": 20261018,
+  "controller": {
+    "P": -0.8,
+    "D_s": -24.9
+  },
+  "controller_scope": "Borrowed published 5415M case 206 CFD/PF approximation; not the unknown experimental controller.",
+  "runtime_integration_authorised": true,
+  "physical_validation_scope": "Equivalent roll comparisons and two published heading peak RAOs; not validation of all four components over all routing conditions.",
+  "batch_authorisation_file": "experiment_freeze.json"
+}

@@ -1,0 +1,42 @@
+{
+  "source": "Sadat-Hosseini et al. (2015), DOI: 10.5957/WMTC-2015-152",
+  "component_order": [
+    "roll angle",
+    "total heading angle",
+    "sway velocity",
+    "surge velocity"
+  ],
+  "units": [
+    "deg",
+    "deg",
+    "m/s",
+    "m/s"
+  ],
+  "standard_deviations": {
+    "0": [
+      0.454,
+      0.169,
+      0.064,
+      0.175
+    ],
+    "45": [
+      0.606,
+      0.938,
+      0.213,
+      0.157
+    ],
+    "90": [
+      2.342,
+      2.056,
+      0.595,
+      0.211
+    ],
+    "180": [
+      0.568,
+      0.248,
+      0.062,
+      0.394
+    ]
+  },
+  "scope": "Published irregular-wave observations. Total heading SD is not a validation target for the narrower wave-induced yaw SD used in route costs. These published cases are not a new blind validation dataset."
+}

@@ -1,0 +1,23 @@
+{
+  "scenarioId": "S5",
+  "area": {
+    "lonMin": 123.0,
+    "lonMax": 128.0,
+    "latMin": 24.0,
+    "latMax": 28.0
+  },
+  "grid": {
+    "nx": 61,
+    "ny": 49
+  },
+  "startPoint": {
+    "lat": 26.5,
+    "lon": 124.5
+  },
+  "endPoint": {
+    "lat": 25.0,
+    "lon": 127.0
+  },
+  "departureDate": "20260311",
+  "departureHour": 6.0
+}

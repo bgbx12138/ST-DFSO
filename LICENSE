@@ -1,0 +1,64 @@
+ST-DFSO Non-Commercial Academic Research Licence
+Version 1.0, 12 November 2026
+
+Copyright (c) 2026 the respective ST-DFSO authors and contributors.
+
+1. Scope
+This licence applies to the original ST-DFSO code, documentation and original
+research outputs distributed with this notice, to the extent that the relevant
+copyright holders are entitled to license them. Separately identified third-party
+software, data, publications and material remain subject to their own terms.
+See THIRD_PARTY_NOTICES.md. This licence does not restrict rights granted directly
+by a third-party owner or rights available under applicable law.
+
+2. Permitted academic use
+You may access, run, copy, study and modify the covered material without a fee
+solely for non-commercial academic research, scholarly evaluation, reproducibility
+studies and teaching. You may publish your scientific findings, including in
+journals that charge publication or subscription fees. Those publication fees
+alone do not make an otherwise permitted academic study commercial.
+
+3. Commercial use is not granted
+This licence does not permit selling or licensing the covered material, providing
+paid services based on it, incorporating it into commercial products or services,
+or using it to develop, test, improve or operate a commercial product or service.
+Use on behalf of a commercial client, or for commercial operational routing, is
+not permitted. Any such use requires a separate written licence from the relevant
+rights holders before the use begins. No commercial permission is implied by
+public availability, academic affiliation or an absence of revenue at the time.
+
+4. Sharing and modifications
+You may share the covered material and your modifications for the purposes in
+section 2, provided that you include this licence, retain existing copyright and
+third-party notices, identify substantive modifications and preserve these use
+restrictions for the covered material and derivatives of it. You must not imply
+that the original authors endorse your modifications or findings. Independent
+third-party components are not relicensed by this requirement.
+
+5. Acknowledgement
+Retain attribution to ST-DFSO. Publications substantially using the covered code
+or research outputs must acknowledge the project and cite its associated paper
+when bibliographic details are available. This requirement does not give the
+authors approval rights over publications or scientific conclusions.
+
+6. Other rights
+No ownership is transferred. No trademark rights or express patent licence are
+granted. Rights not expressly granted here are reserved by their respective owners.
+Contributions are accepted only from contributors entitled to provide them under
+these terms; third-party material must retain its original notices and licence.
+
+7. Warranty and liability
+The covered material is supplied without any warranty, including warranties of
+accuracy, fitness for a particular purpose, merchantability or non-infringement.
+It is research software, not a certified operational navigation system. To the
+extent permitted by applicable law, the rights holders are not liable for losses
+or damages arising from its use or inability to use it. Nothing here excludes
+liability that applicable law does not allow to be excluded.
+
+8. Termination
+Permissions under this licence end if you breach its conditions. You must then
+stop the unauthorised use and distribution. Permissions may be reinstated only
+by written agreement with the relevant rights holders.
+
+This is a source-available research licence with a non-commercial restriction.
+It is not an Open Source Initiative approved open-source licence.

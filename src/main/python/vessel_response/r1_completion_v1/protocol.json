@@ -1,0 +1,2404 @@
+{
+  "date": "2026-10-19",
+  "scope": "OE response-energy calibration first completed version; retain own roll and avoid a new hydrodynamic solver project",
+  "references": [
+    "10.1016/j.oceaneng.2020.107664",
+    "10.1016/j.oceaneng.2024.117821",
+    "10.1016/j.oceaneng.2024.119581"
+  ],
+  "hashes": {
+    "src/main/python/vessel_response/r1_completion_v1/hydro.py": "c3775ae76ce8de8b3727035fedda5e3c11d8756ff519b52b3b5f8c02f7caf263",
+    "src/main/python/vessel_response/r1_completion_v1/prepare.py": "55ef7bd4c5be1dfaea3683bd5eaeee5fc37adf910634f6c9114c8349b60e0d17",
+    "src/main/python/vessel_response/r1_completion_v1/trim.py": "ae1f3a713859bcff3f26e0d4208ec837c801f40613a27ecf0bc053f4b7cdbfa7",
+    "src/main/python/vessel_response/oe_moment_calibration_v1/parameter_seal.json": "b62449fcbf51d4366e6d56381cc596d74cc1a46fd720888e276531b1a969dfac",
+    "src/main/python/vessel_response/oe_decision_impact_v1/response_model.py": "9126d97b2afdac9d7b2f4f0ba6854e698bbc1be72f1bc5e754a45fca8dad8037",
+    "src/main/python/vessel_response/wave_input_evidence_v1/input_weights.npz": "b61e4d5cbc647c41a2920a166d0b439dce3044c928b6197d6a5fcd3c60a9d637",
+    "src/main/python/vessel_response/wave_input_evidence_v1/wave_only_inputs.json": "1b0a99f1b438644744b3655d2bdfcc4cc47b5c82a841837a8bd54013dfb85b1b",
+    "src/main/python/vessel_response/dtmb_lateral_provider_v1/provider_contract.json": "1868b8643ba546018b97d17046e978274fd29d3ba133496ea3f1d6fac974d89c",
+    "src/main/python/vessel_response/dtmb_viscous_rudder_v1/contract.json": "1e8f5f15d3c0e51f53ce5a6ded6661e649f496dbca96421f87995c8256948b89",
+    "src/main/python/vessel_response/control_coupling_repair_v1/controller_port_check.json": "eeb99172a253c4c7d698eaf9cd31c898922dedb8fba795af9627a47d31414ed0",
+    "references/CFD and Potential Flow Simulations of Fully Appended Free Running 5415M in Irregular Waves.pdf": "5ff0c4527740b28f0f79331ede61fe8617e5293e1c67bd281079a17a631bdd1f",
+    "src/main/python/vessel_response/dtmb_passive_wave_prediction_v1/mesh_s4.npz": "519994c38f84ab78c18a1a5172f984ab47fe442adfd4e10e88ae0b3647c4ac81",
+    "src/main/python/vessel_response/dtmb_passive_wave_prediction_v1/mesh_s2.npz": "dee63cb759c5100c25eb75141df19f1056f3dffa0498180b559529dd93d662ee"
+  },
+  "direct_sources": "Own same-ship WMTC2015 EFD targets Tables18/20/22; case105passive not mixed with active data.",
+  "fixed_roll_parameters": true,
+  "roll_refit_forbidden": true,
+  "auxiliary_structure": "Linear frequency-domain surge/sway/yaw operator conditional on own frozen nonlinear roll trace; bare-hull wave/radiation inputs from public Capytaine3.0, sourced foil ports; frozen roll impedance receives no additional radiation/damping/feedback.",
+  "canonical_negative_encounter": "Explicit physical incident potential/gradient and convective pressure identity for both signed branches; replace native incidentBC only, not the Green kernel.",
+  "foil_control": "Published common nominalP=-.8; fin roll-rate gain5s plus previously phase-identified one-pole lag; no second roll feedback. Actual experimental rudder gains remain unknown.",
+  "fitted_parameters": [
+    "B_surge",
+    "B_sway",
+    "B_yaw"
+  ],
+  "parameter_role": "Positive whole equivalent in-wave diagonal velocity damping in auxiliary block; replace diagonal real velocity components once, retain sourced cross terms/reactive part. Not a new roll parameter or uniquely identified viscous decomposition.",
+  "initial_damping": "Source-based calm tangent/cross derivatives, old velocity diagonal magnitudes where needed; parameter log coordinates.",
+  "development": {
+    "angles": [
+      45,
+      90
+    ],
+    "target": "six centered response SDs(u,v,psi); mean angles/means not calibration targets",
+    "seeds": [
+      20261018,
+      20261019,
+      20261020,
+      20261021,
+      20261022,
+      20261023,
+      20261024,
+      20261025
+    ]
+  },
+  "confirmation": {
+    "angles": [
+      0,
+      180
+    ],
+    "target": "same6centeredSD plus yaw period diagnostics; not read by objective",
+    "historically_seen": true,
+    "not_new_blind": true
+  },
+  "identifiability": "normalized3column Jacobian rank3, singular values/condition; refuse rank deficiency or boundary solution. One candidate, at most40objective calls. No parameter updates after confirmation.",
+  "objective": "Six equally weighted logarithmic SD residuals; 2conditions x3responses. Never calibrate against yaw angle as if it were yaw rate.",
+  "finite_domain": "log damping multiplier relative initial within[log(1e-3),log(1e3)] numerical guard only, not claimed physical prior; boundary admission forbidden.",
+  "frequency_grid_W": [
+    0.4,
+    0.475,
+    0.55,
+    0.625,
+    0.7,
+    0.775,
+    0.85,
+    0.925,
+    1.0,
+    1.075,
+    1.15,
+    1.225,
+    1.3,
+    1.375,
+    1.45,
+    1.525,
+    1.6,
+    1.657585349439
+  ],
+  "radiation_grid_nu": [
+    0.025,
+    0.05,
+    0.075,
+    0.1,
+    0.15,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.75,
+    0.9,
+    1.1,
+    1.3,
+    1.6,
+    2.0,
+    2.5,
+    3.0,
+    4.0,
+    5.0,
+    6.0,
+    8.0,
+    12.0
+  ],
+  "profiles": {
+    "s0": 9.196,
+    "s45": 9.279,
+    "s90": 9.431,
+    "s180": 9.227,
+    "route": 9.256149419710122
+  },
+  "hydro_jobs": [
+    {
+      "id": "r_s0_00_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 0.025
+    },
+    {
+      "id": "r_s0_01_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 0.05
+    },
+    {
+      "id": "r_s0_02_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 0.075
+    },
+    {
+      "id": "r_s0_03_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 0.1
+    },
+    {
+      "id": "r_s0_04_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 0.15
+    },
+    {
+      "id": "r_s0_05_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 0.2
+    },
+    {
+      "id": "r_s0_06_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 0.3
+    },
+    {
+      "id": "r_s0_07_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 0.4
+    },
+    {
+      "id": "r_s0_08_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 0.5
+    },
+    {
+      "id": "r_s0_09_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 0.6
+    },
+    {
+      "id": "r_s0_10_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 0.75
+    },
+    {
+      "id": "r_s0_11_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 0.9
+    },
+    {
+      "id": "r_s0_12_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 1.1
+    },
+    {
+      "id": "r_s0_13_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 1.3
+    },
+    {
+      "id": "r_s0_14_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 1.6
+    },
+    {
+      "id": "r_s0_15_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 2.0
+    },
+    {
+      "id": "r_s0_16_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 2.5
+    },
+    {
+      "id": "r_s0_17_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 3.0
+    },
+    {
+      "id": "r_s0_18_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 4.0
+    },
+    {
+      "id": "r_s0_19_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 5.0
+    },
+    {
+      "id": "r_s0_20_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 6.0
+    },
+    {
+      "id": "r_s0_21_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 8.0
+    },
+    {
+      "id": "r_s0_22_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "nu": 12.0
+    },
+    {
+      "id": "r_s45_00_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 0.025
+    },
+    {
+      "id": "r_s45_01_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 0.05
+    },
+    {
+      "id": "r_s45_02_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 0.075
+    },
+    {
+      "id": "r_s45_03_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 0.1
+    },
+    {
+      "id": "r_s45_04_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 0.15
+    },
+    {
+      "id": "r_s45_05_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 0.2
+    },
+    {
+      "id": "r_s45_06_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 0.3
+    },
+    {
+      "id": "r_s45_07_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 0.4
+    },
+    {
+      "id": "r_s45_08_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 0.5
+    },
+    {
+      "id": "r_s45_09_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 0.6
+    },
+    {
+      "id": "r_s45_10_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 0.75
+    },
+    {
+      "id": "r_s45_11_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 0.9
+    },
+    {
+      "id": "r_s45_12_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 1.1
+    },
+    {
+      "id": "r_s45_13_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 1.3
+    },
+    {
+      "id": "r_s45_14_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 1.6
+    },
+    {
+      "id": "r_s45_15_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 2.0
+    },
+    {
+      "id": "r_s45_16_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 2.5
+    },
+    {
+      "id": "r_s45_17_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 3.0
+    },
+    {
+      "id": "r_s45_18_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 4.0
+    },
+    {
+      "id": "r_s45_19_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 5.0
+    },
+    {
+      "id": "r_s45_20_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 6.0
+    },
+    {
+      "id": "r_s45_21_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 8.0
+    },
+    {
+      "id": "r_s45_22_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "nu": 12.0
+    },
+    {
+      "id": "r_s90_00_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 0.025
+    },
+    {
+      "id": "r_s90_01_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 0.05
+    },
+    {
+      "id": "r_s90_02_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 0.075
+    },
+    {
+      "id": "r_s90_03_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 0.1
+    },
+    {
+      "id": "r_s90_04_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 0.15
+    },
+    {
+      "id": "r_s90_05_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 0.2
+    },
+    {
+      "id": "r_s90_06_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 0.3
+    },
+    {
+      "id": "r_s90_07_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 0.4
+    },
+    {
+      "id": "r_s90_08_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 0.5
+    },
+    {
+      "id": "r_s90_09_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 0.6
+    },
+    {
+      "id": "r_s90_10_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 0.75
+    },
+    {
+      "id": "r_s90_11_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 0.9
+    },
+    {
+      "id": "r_s90_12_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 1.1
+    },
+    {
+      "id": "r_s90_13_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 1.3
+    },
+    {
+      "id": "r_s90_14_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 1.6
+    },
+    {
+      "id": "r_s90_15_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 2.0
+    },
+    {
+      "id": "r_s90_16_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 2.5
+    },
+    {
+      "id": "r_s90_17_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 3.0
+    },
+    {
+      "id": "r_s90_18_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 4.0
+    },
+    {
+      "id": "r_s90_19_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 5.0
+    },
+    {
+      "id": "r_s90_20_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 6.0
+    },
+    {
+      "id": "r_s90_21_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 8.0
+    },
+    {
+      "id": "r_s90_22_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "nu": 12.0
+    },
+    {
+      "id": "r_s180_00_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 0.025
+    },
+    {
+      "id": "r_s180_01_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 0.05
+    },
+    {
+      "id": "r_s180_02_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 0.075
+    },
+    {
+      "id": "r_s180_03_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 0.1
+    },
+    {
+      "id": "r_s180_04_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 0.15
+    },
+    {
+      "id": "r_s180_05_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 0.2
+    },
+    {
+      "id": "r_s180_06_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 0.3
+    },
+    {
+      "id": "r_s180_07_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 0.4
+    },
+    {
+      "id": "r_s180_08_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 0.5
+    },
+    {
+      "id": "r_s180_09_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 0.6
+    },
+    {
+      "id": "r_s180_10_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 0.75
+    },
+    {
+      "id": "r_s180_11_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 0.9
+    },
+    {
+      "id": "r_s180_12_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 1.1
+    },
+    {
+      "id": "r_s180_13_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 1.3
+    },
+    {
+      "id": "r_s180_14_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 1.6
+    },
+    {
+      "id": "r_s180_15_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 2.0
+    },
+    {
+      "id": "r_s180_16_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 2.5
+    },
+    {
+      "id": "r_s180_17_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 3.0
+    },
+    {
+      "id": "r_s180_18_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 4.0
+    },
+    {
+      "id": "r_s180_19_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 5.0
+    },
+    {
+      "id": "r_s180_20_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 6.0
+    },
+    {
+      "id": "r_s180_21_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 8.0
+    },
+    {
+      "id": "r_s180_22_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "nu": 12.0
+    },
+    {
+      "id": "r_route_00_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 0.025
+    },
+    {
+      "id": "r_route_01_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 0.05
+    },
+    {
+      "id": "r_route_02_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 0.075
+    },
+    {
+      "id": "r_route_03_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 0.1
+    },
+    {
+      "id": "r_route_04_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 0.15
+    },
+    {
+      "id": "r_route_05_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 0.2
+    },
+    {
+      "id": "r_route_06_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 0.3
+    },
+    {
+      "id": "r_route_07_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 0.4
+    },
+    {
+      "id": "r_route_08_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 0.5
+    },
+    {
+      "id": "r_route_09_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 0.6
+    },
+    {
+      "id": "r_route_10_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 0.75
+    },
+    {
+      "id": "r_route_11_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 0.9
+    },
+    {
+      "id": "r_route_12_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 1.1
+    },
+    {
+      "id": "r_route_13_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 1.3
+    },
+    {
+      "id": "r_route_14_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 1.6
+    },
+    {
+      "id": "r_route_15_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 2.0
+    },
+    {
+      "id": "r_route_16_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 2.5
+    },
+    {
+      "id": "r_route_17_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 3.0
+    },
+    {
+      "id": "r_route_18_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 4.0
+    },
+    {
+      "id": "r_route_19_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 5.0
+    },
+    {
+      "id": "r_route_20_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 6.0
+    },
+    {
+      "id": "r_route_21_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 8.0
+    },
+    {
+      "id": "r_route_22_s4",
+      "kind": "rad",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 12.0
+    },
+    {
+      "id": "w_s0_00_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 0.4
+    },
+    {
+      "id": "w_s0_01_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 0.475
+    },
+    {
+      "id": "w_s0_02_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 0.55
+    },
+    {
+      "id": "w_s0_03_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 0.625
+    },
+    {
+      "id": "w_s0_04_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 0.7
+    },
+    {
+      "id": "w_s0_05_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 0.775
+    },
+    {
+      "id": "w_s0_06_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 0.85
+    },
+    {
+      "id": "w_s0_07_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 0.925
+    },
+    {
+      "id": "w_s0_08_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 1.0
+    },
+    {
+      "id": "w_s0_09_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 1.075
+    },
+    {
+      "id": "w_s0_10_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 1.15
+    },
+    {
+      "id": "w_s0_11_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 1.225
+    },
+    {
+      "id": "w_s0_12_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 1.3
+    },
+    {
+      "id": "w_s0_13_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 1.375
+    },
+    {
+      "id": "w_s0_14_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 1.45
+    },
+    {
+      "id": "w_s0_15_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 1.525
+    },
+    {
+      "id": "w_s0_16_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 1.6
+    },
+    {
+      "id": "w_s0_17_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s0",
+      "U": 9.196,
+      "mu": 0,
+      "w": 1.657585349439
+    },
+    {
+      "id": "w_s45_00_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 0.4
+    },
+    {
+      "id": "w_s45_01_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 0.475
+    },
+    {
+      "id": "w_s45_02_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 0.55
+    },
+    {
+      "id": "w_s45_03_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 0.625
+    },
+    {
+      "id": "w_s45_04_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 0.7
+    },
+    {
+      "id": "w_s45_05_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 0.775
+    },
+    {
+      "id": "w_s45_06_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 0.85
+    },
+    {
+      "id": "w_s45_07_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 0.925
+    },
+    {
+      "id": "w_s45_08_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 1.0
+    },
+    {
+      "id": "w_s45_09_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 1.075
+    },
+    {
+      "id": "w_s45_10_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 1.15
+    },
+    {
+      "id": "w_s45_11_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 1.225
+    },
+    {
+      "id": "w_s45_12_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 1.3
+    },
+    {
+      "id": "w_s45_13_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 1.375
+    },
+    {
+      "id": "w_s45_14_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 1.45
+    },
+    {
+      "id": "w_s45_15_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 1.525
+    },
+    {
+      "id": "w_s45_16_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 1.6
+    },
+    {
+      "id": "w_s45_17_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 1.657585349439
+    },
+    {
+      "id": "w_s90_00_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 0.4
+    },
+    {
+      "id": "w_s90_01_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 0.475
+    },
+    {
+      "id": "w_s90_02_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 0.55
+    },
+    {
+      "id": "w_s90_03_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 0.625
+    },
+    {
+      "id": "w_s90_04_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 0.7
+    },
+    {
+      "id": "w_s90_05_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 0.775
+    },
+    {
+      "id": "w_s90_06_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 0.85
+    },
+    {
+      "id": "w_s90_07_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 0.925
+    },
+    {
+      "id": "w_s90_08_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 1.0
+    },
+    {
+      "id": "w_s90_09_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 1.075
+    },
+    {
+      "id": "w_s90_10_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 1.15
+    },
+    {
+      "id": "w_s90_11_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 1.225
+    },
+    {
+      "id": "w_s90_12_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 1.3
+    },
+    {
+      "id": "w_s90_13_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 1.375
+    },
+    {
+      "id": "w_s90_14_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 1.45
+    },
+    {
+      "id": "w_s90_15_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 1.525
+    },
+    {
+      "id": "w_s90_16_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 1.6
+    },
+    {
+      "id": "w_s90_17_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 1.657585349439
+    },
+    {
+      "id": "w_s180_00_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 0.4
+    },
+    {
+      "id": "w_s180_01_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 0.475
+    },
+    {
+      "id": "w_s180_02_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 0.55
+    },
+    {
+      "id": "w_s180_03_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 0.625
+    },
+    {
+      "id": "w_s180_04_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 0.7
+    },
+    {
+      "id": "w_s180_05_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 0.775
+    },
+    {
+      "id": "w_s180_06_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 0.85
+    },
+    {
+      "id": "w_s180_07_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 0.925
+    },
+    {
+      "id": "w_s180_08_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 1.0
+    },
+    {
+      "id": "w_s180_09_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 1.075
+    },
+    {
+      "id": "w_s180_10_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 1.15
+    },
+    {
+      "id": "w_s180_11_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 1.225
+    },
+    {
+      "id": "w_s180_12_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 1.3
+    },
+    {
+      "id": "w_s180_13_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 1.375
+    },
+    {
+      "id": "w_s180_14_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 1.45
+    },
+    {
+      "id": "w_s180_15_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 1.525
+    },
+    {
+      "id": "w_s180_16_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 1.6
+    },
+    {
+      "id": "w_s180_17_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 1.657585349439
+    },
+    {
+      "id": "w_route0_00_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 0.4
+    },
+    {
+      "id": "w_route0_01_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 0.475
+    },
+    {
+      "id": "w_route0_02_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 0.55
+    },
+    {
+      "id": "w_route0_03_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 0.625
+    },
+    {
+      "id": "w_route0_04_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 0.7
+    },
+    {
+      "id": "w_route0_05_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 0.775
+    },
+    {
+      "id": "w_route0_06_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 0.85
+    },
+    {
+      "id": "w_route0_07_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 0.925
+    },
+    {
+      "id": "w_route0_08_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 1.0
+    },
+    {
+      "id": "w_route0_09_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 1.075
+    },
+    {
+      "id": "w_route0_10_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 1.15
+    },
+    {
+      "id": "w_route0_11_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 1.225
+    },
+    {
+      "id": "w_route0_12_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 1.3
+    },
+    {
+      "id": "w_route0_13_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 1.375
+    },
+    {
+      "id": "w_route0_14_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 1.45
+    },
+    {
+      "id": "w_route0_15_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 1.525
+    },
+    {
+      "id": "w_route0_16_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 1.6
+    },
+    {
+      "id": "w_route0_17_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 0,
+      "w": 1.657585349439
+    },
+    {
+      "id": "w_route45_00_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 0.4
+    },
+    {
+      "id": "w_route45_01_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 0.475
+    },
+    {
+      "id": "w_route45_02_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 0.55
+    },
+    {
+      "id": "w_route45_03_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 0.625
+    },
+    {
+      "id": "w_route45_04_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 0.7
+    },
+    {
+      "id": "w_route45_05_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 0.775
+    },
+    {
+      "id": "w_route45_06_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 0.85
+    },
+    {
+      "id": "w_route45_07_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 0.925
+    },
+    {
+      "id": "w_route45_08_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 1.0
+    },
+    {
+      "id": "w_route45_09_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 1.075
+    },
+    {
+      "id": "w_route45_10_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 1.15
+    },
+    {
+      "id": "w_route45_11_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 1.225
+    },
+    {
+      "id": "w_route45_12_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 1.3
+    },
+    {
+      "id": "w_route45_13_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 1.375
+    },
+    {
+      "id": "w_route45_14_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 1.45
+    },
+    {
+      "id": "w_route45_15_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 1.525
+    },
+    {
+      "id": "w_route45_16_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 1.6
+    },
+    {
+      "id": "w_route45_17_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 45,
+      "w": 1.657585349439
+    },
+    {
+      "id": "w_route90_00_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 0.4
+    },
+    {
+      "id": "w_route90_01_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 0.475
+    },
+    {
+      "id": "w_route90_02_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 0.55
+    },
+    {
+      "id": "w_route90_03_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 0.625
+    },
+    {
+      "id": "w_route90_04_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 0.7
+    },
+    {
+      "id": "w_route90_05_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 0.775
+    },
+    {
+      "id": "w_route90_06_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 0.85
+    },
+    {
+      "id": "w_route90_07_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 0.925
+    },
+    {
+      "id": "w_route90_08_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 1.0
+    },
+    {
+      "id": "w_route90_09_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 1.075
+    },
+    {
+      "id": "w_route90_10_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 1.15
+    },
+    {
+      "id": "w_route90_11_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 1.225
+    },
+    {
+      "id": "w_route90_12_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 1.3
+    },
+    {
+      "id": "w_route90_13_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 1.375
+    },
+    {
+      "id": "w_route90_14_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 1.45
+    },
+    {
+      "id": "w_route90_15_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 1.525
+    },
+    {
+      "id": "w_route90_16_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 1.6
+    },
+    {
+      "id": "w_route90_17_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 90,
+      "w": 1.657585349439
+    },
+    {
+      "id": "w_route180_00_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 0.4
+    },
+    {
+      "id": "w_route180_01_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 0.475
+    },
+    {
+      "id": "w_route180_02_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 0.55
+    },
+    {
+      "id": "w_route180_03_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 0.625
+    },
+    {
+      "id": "w_route180_04_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 0.7
+    },
+    {
+      "id": "w_route180_05_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 0.775
+    },
+    {
+      "id": "w_route180_06_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 0.85
+    },
+    {
+      "id": "w_route180_07_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 0.925
+    },
+    {
+      "id": "w_route180_08_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 1.0
+    },
+    {
+      "id": "w_route180_09_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 1.075
+    },
+    {
+      "id": "w_route180_10_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 1.15
+    },
+    {
+      "id": "w_route180_11_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 1.225
+    },
+    {
+      "id": "w_route180_12_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 1.3
+    },
+    {
+      "id": "w_route180_13_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 1.375
+    },
+    {
+      "id": "w_route180_14_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 1.45
+    },
+    {
+      "id": "w_route180_15_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 1.525
+    },
+    {
+      "id": "w_route180_16_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 1.6
+    },
+    {
+      "id": "w_route180_17_s4",
+      "kind": "wave",
+      "stride": 4,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "mu": 180,
+      "w": 1.657585349439
+    }
+  ],
+  "fine_check_jobs": [
+    {
+      "id": "r_route_01_s2",
+      "kind": "rad",
+      "stride": 2,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 0.05
+    },
+    {
+      "id": "r_route_09_s2",
+      "kind": "rad",
+      "stride": 2,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 0.6
+    },
+    {
+      "id": "r_route_16_s2",
+      "kind": "rad",
+      "stride": 2,
+      "profile": "route",
+      "U": 9.256149419710122,
+      "nu": 2.5
+    },
+    {
+      "id": "w_s45_03_s2",
+      "kind": "wave",
+      "stride": 2,
+      "profile": "s45",
+      "U": 9.279,
+      "mu": 45,
+      "w": 0.625
+    },
+    {
+      "id": "w_s90_06_s2",
+      "kind": "wave",
+      "stride": 2,
+      "profile": "s90",
+      "U": 9.431,
+      "mu": 90,
+      "w": 0.85
+    },
+    {
+      "id": "w_s180_12_s2",
+      "kind": "wave",
+      "stride": 2,
+      "profile": "s180",
+      "U": 9.227,
+      "mu": 180,
+      "w": 1.3
+    }
+  ],
+  "hydro_RHS": 619,
+  "calibrated_damping_not_automatically_validation": true,
+  "report_all_errors": true,
+  "auxiliary_mean_response_validation_not_claimed_from_prescribed_reference": true,
+  "control_consistency": "Compute operating trim before roll lookup; body wave angle and full body-frame water velocity determine encounter input; registered water-track vector and route clock preserved.",
+  "spectral_role": "Stationary spectral moment identification, then own nonlinear roll/time-series and fine-frequency/mesh checks; source period dispersion and means remain separate.",
+  "production_switch": "Independent build and explicit provider; missing state is RESPONSE_REQUIRED, never land/safe fallback. No mutation of running algorithm build.",
+  "work_limit": {
+    "total_seconds": 7200,
+    "per_job_seconds": 240,
+    "threads": 2,
+    "workers": 1
+  },
+  "long_batch_includes_no_route_optimization_or_Pareto": true,
+  "outcomes": "Always retain first version and failed confirmation. No automatic next candidate, damping refit, objective change or response-informed wave spectrum adjustment."
+}

@@ -1,0 +1,51 @@
+{
+  "models": {
+    "uncorrected": [
+      0.0,
+      0.0
+    ],
+    "one_amplitude": [
+      -0.06558138383240826,
+      0.0
+    ],
+    "two_parameter": [
+      -0.23166847509085126,
+      -0.4851586789775086
+    ]
+  },
+  "active_anchor": {
+    "C": 161296118.1,
+    "alpha": 202400000.0,
+    "beta": 20800000.0,
+    "I": 536086969.9555996,
+    "Td": 12.2,
+    "roots": [
+      72025403.20482287,
+      536086969.9555996
+    ],
+    "dry_I": 490101545.35679996,
+    "poles": [
+      [
+        -0.188775339957212,
+        0.5150151891130809
+      ],
+      [
+        -0.188775339957212,
+        -0.5150151891130809
+      ]
+    ],
+    "zeta": 0.3441525002912456
+  },
+  "band_omega_rad_s": [
+    0.4810887759952687,
+    1.434971693916922
+  ],
+  "input_hashes": {
+    "src/main/python/vessel_response/active_aggregate_fit_v1/execution_contract.json": "9128733fbcac7b191ce0954c89a07a56d320488e7ba1e770c00865ca43a0601f",
+    "src/main/python/vessel_response/active_aggregate_fit_v1/development_result.json": "38a5d9524411e7ae1393da97b3b95cb0490ab28dd6b69d25496ef3b3607e7b27",
+    "src/main/python/vessel_response/active_aggregate_fit_v1/development_curves.csv": "0b6101e9577fa3b60512b4245e359741df14546e9c00cbb9b6f5f31f05da6721"
+  },
+  "no_confirmation_model_selection": true,
+  "old_parameters_unchanged": true,
+  "held_outcomes_read": false
+}

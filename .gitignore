@@ -1,0 +1,89 @@
+# Build products and local Python environments
+/target/
+/.venv/
+/venv/
+__pycache__/
+*.py[cod]
+*.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Only the five required processed input folders are included below
+/data/environment/*
+# Local detailed reports; public results use the compact index.
+/data/results/runs/
+/outputs/
+*.sqlite3*
+*.log
+
+# Credentials and machine-specific configuration
+.env
+.env.*
+!.env.example
+.cdsapirc
+.copernicusmarine/
+.git-credentials
+.netrc
+_netrc
+.npmrc
+.pypirc
+.aws/
+.ssh/
+credentials.json
+secrets.json
+id_rsa
+id_ed25519
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Raw provider downloads are unnecessary for the included processed inputs
+*.nc
+*.grib
+*.grib2
+*.grb
+*.grb2
+
+# Editors, operating systems and internal working notes
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
+*.swp
+*.swo
+*.tmp
+*.bak
+/.planning/
+/.graphflow/
+/.graphflow-cache/
+/.claude/
+/.codex/
+/backups/
+/snapshots/
+*.zip
+*.rar
+*.7z
+
+
+
+# Generated arrays and archives; required model assets are explicitly tracked.
+*.npz
+*.npy
+*.zip
+
+# Included processed environmental inputs
+!/data/environment/S1_S5_taiwan/
+!/data/environment/S2_south_china_sea/
+!/data/environment/S3_miyako_strait/
+!/data/environment/S4_bashi_channel/
+!/data/environment/S6_qingdao_busan/
+
+# Local dated working notes
+/docs/*_20*.md

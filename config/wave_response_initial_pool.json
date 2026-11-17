@@ -1,0 +1,18 @@
+{
+  "data_file": "data/model/wave_response_initial_responses.json",
+  "data_sha256": "de4b66de45a83e01b3b708df004eb450a9361ea2d6a997a9583bedce905bcede",
+  "records": 441,
+  "physical_revision": "01b2e3ba5243fb26770d016c9cc44f5919b3473b9c9547c3eca73b41536e5317",
+  "runtime_revision": "01b2e3ba5243fb26770d016c9cc44f5919b3473b9c9547c3eca73b41536e5317",
+  "input_routes": {
+    "S1": "f4ec5c8a8865f3cb6b9a9d17ce3c474224950b57bc24087c04f834cc3c24cc1a",
+    "S2": "660e3858735239047dbcf11eb6104fdfba8c3db5764b8f16e7888e6fc90b7953",
+    "S3": "908179cdc1f043453bdb02a024ec0382fd83fb2f57c74ecaf142af1e6ca1a06c",
+    "S4": "2663d5f8d18a57378597ea4914ed13f91211dfee142864da5a785925497e1b55",
+    "S5": "a87411a4543d21bdcc1adc4c0e47ac8187942c4095138e6adb076855c34ca120",
+    "S6": "fce0eec94fe516dc482d7deee0459afa1b755d7071a04ed9293f87353b99fc21"
+  },
+  "compatible_model_manifest_sha256": "9cdc5ba9fa09b62b3f4d25abd1eb94f23cad14af5dcb9393c39aa7dd4ce3227b",
+  "speed_config_sha256": "f4568ae01137f57ccc2a58434033970ff895f1f07a2e8340907dfd87fa36ad86",
+  "cost_scope": "Exact-input responses for the six initial routes only; no optimiser candidates. Offline preparation is outside individual run budgets. Each run includes its initial-route evaluation and any new response calculation in measured CPU."
+}

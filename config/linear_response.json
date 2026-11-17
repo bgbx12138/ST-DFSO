@@ -1,0 +1,17 @@
+{
+  "schema": "STDFSO_FIXED_LINEAR_RESPONSE_V1",
+  "controller": {
+    "P": -0.8,
+    "D_s": -24.9
+  },
+  "controller_source": "Sadat-Hosseini et al. (2015), CFD and Potential Flow Simulations of Fully Appended Free Running 5415M in Irregular Waves, Table 5, case 206 CFD/PF",
+  "source_doi": "10.5957/WMTC-2015-152",
+  "scope": "One published beam-case controller is borrowed for all headings. It is not claimed to be the actual controller of every EFD case.",
+  "horizontal_model": "Zero-perturbation linear hull response with prescribed wave and roll forcing; no statistical covariance closure",
+  "roll_model": "Existing Gaussian equivalent roll damping; calibration unchanged",
+  "dt_s": 0.125,
+  "record_s": 8192,
+  "discard_s": 512,
+  "seed": 20261018,
+  "parameter_fitting": false
+}

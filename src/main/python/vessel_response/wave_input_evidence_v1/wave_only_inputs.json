@@ -1,0 +1,41 @@
+{
+  "cases": {
+    "215": {
+      "speed": 9.196,
+      "wave_from_deg": 0,
+      "SD": 0.817,
+      "mean_crossing_period": 4.78,
+      "period_U_percent": 4,
+      "source": "WMTC2015 PDF17 Tables9/10; actual speed PDF22 Table20",
+      "role": "unchanged control"
+    },
+    "205": {
+      "speed": 9.279,
+      "wave_from_deg": 45,
+      "SD": 0.805,
+      "mean_crossing_period": 5.47,
+      "period_U_percent": 4,
+      "source": "WMTC2015 PDF17 Tables9/10; actual speed PDF22 Table20",
+      "role": "unchanged control"
+    },
+    "206": {
+      "speed": 9.431,
+      "wave_from_deg": 90,
+      "SD": 0.929,
+      "mean_crossing_period": 8.14,
+      "period_U_percent": 4,
+      "source": "WMTC2015 PDF17 Tables9/10; actual speed PDF22 Table20",
+      "role": "wave-input identification"
+    },
+    "218": {
+      "speed": 9.227,
+      "wave_from_deg": 180,
+      "SD": 1.033,
+      "mean_crossing_period": 21.69,
+      "period_U_percent": 4,
+      "source": "WMTC2015 PDF17 Tables9/10; actual speed PDF22 Table20",
+      "role": "wave-input identification"
+    }
+  },
+  "roll_output_fields_included": false
+}

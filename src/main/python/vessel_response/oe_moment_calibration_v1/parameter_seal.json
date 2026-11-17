@@ -1,0 +1,45 @@
+{
+  "B_wave_Nms_rad": 226195391.3488572,
+  "Gamma": 1.0864012477598213,
+  "old_B": 202400000.0,
+  "relative_B": 1.1175661627907965,
+  "rank": 2,
+  "condition": 9.525833070846984,
+  "singular_values": [
+    1.2414442135846682,
+    0.13032395217841938
+  ],
+  "bound_hit": false,
+  "optimizer_success": true,
+  "nfev": 4,
+  "log_parameter_J": [
+    [
+      -0.7293778793300252,
+      1.000000000028765
+    ],
+    [
+      -0.1617899163754139,
+      7.771561172376473e-11
+    ]
+  ],
+  "objective_old": 0.0003230033144861311,
+  "objective_new": 2.630777163202319e-27,
+  "analytic_old_SD_and_T": [
+    2.336293864613047,
+    8.550909713963653
+  ],
+  "analytic_fitted_SD_and_T": [
+    2.3419999999999472,
+    8.399999999999613
+  ],
+  "targets_SD_deg_T_s": [
+    2.342,
+    8.4
+  ],
+  "heldout_targets_used": false,
+  "nonlinear_forward_correction_fitted": false,
+  "whole_curve_or_205_outcome_not_in_objective": true,
+  "static_decay_parameters_in_legacy_not_changed": true,
+  "interpretation": "effective in-wave response parameters conditional on fixed I,C,beta and wave input; not uniquely measured open-loop damping/force",
+  "new_physical_validation": false
+}

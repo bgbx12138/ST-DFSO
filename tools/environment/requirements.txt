@@ -1,0 +1,6 @@
+copernicusmarine
+cdsapi
+xarray
+netCDF4
+numpy
+scipy

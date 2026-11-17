@@ -1,0 +1,13 @@
+{
+  "U0_m_s": 9.256149419710122,
+  "n_rps_full": 1.6679262668786714,
+  "n_rpm_full": 100.07557601272029,
+  "n_rps_model35_48": 9.935017894612509,
+  "J0": 0.9021457682026398,
+  "R0_N": 188462.4317978917,
+  "T0_N": 188462.43179789165,
+  "wake": 0.0,
+  "thrust_deduction": 0.0,
+  "actual_experimental_workpoint": false,
+  "origin": "Friction-only zero-wake zero-thrust-deduction nominal self-propulsion reference; not total resistance or MARIN RPM"
+}

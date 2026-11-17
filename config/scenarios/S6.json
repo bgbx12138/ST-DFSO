@@ -1,0 +1,23 @@
+{
+  "scenarioId": "S3",
+  "area": {
+    "lonMin": 120.0,
+    "lonMax": 132.0,
+    "latMin": 33.0,
+    "latMax": 40.0
+  },
+  "grid": {
+    "nx": 145,
+    "ny": 85
+  },
+  "startPoint": {
+    "lat": 37.5,
+    "lon": 122.5
+  },
+  "endPoint": {
+    "lat": 35.0,
+    "lon": 129.5
+  },
+  "departureDate": "20260311",
+  "departureHour": 0.0
+}

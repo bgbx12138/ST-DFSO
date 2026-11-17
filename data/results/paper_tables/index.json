@@ -1,0 +1,17 @@
+[
+  {
+    "table": "Table 1",
+    "file": "data/results/paper_tables/main_table_1.csv",
+    "caption": "Table 1. ST-DFSO performance at 60 CPU s relative to the comparison algorithms."
+  },
+  {
+    "table": "Table 2",
+    "file": "data/results/paper_tables/main_table_2.csv",
+    "caption": "Table 2. ST-DFSO performance for the selected objective on the final routes."
+  },
+  {
+    "table": "Table 3",
+    "file": "data/results/paper_tables/main_table_3.csv",
+    "caption": "Table 3. Distance and motion-cost decomposition of the S6 final-route comparisons with window ILS."
+  }
+]

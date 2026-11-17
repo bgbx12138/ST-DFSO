@@ -1,0 +1,144 @@
+{
+  "date": "2026-10-16",
+  "scope": "OE R1 nominal structural diagnostic only",
+  "input_hashes": {
+    "src/main/python/vessel_response/dtmb_lateral_provider_v1/run_minimal.py": "502bdc5c0af63ce9052bfad24a2c1d8688be1155a4a364081e097b78c61f07b1",
+    "src/main/python/vessel_response/dtmb_lateral_provider_v1/extract_geometry.py": "28cab6e79811e849c98e5cecb69f4734c4756889a0c84b5cbff28aeaa3fdb63b",
+    "src/main/python/vessel_response/dtmb_lateral_provider_v1/appendage_geometry.json": "fbc139d3904a527f2a1b96c98b4b537c13c719164ba65a2b5740b5d5e8e0d4e4",
+    "src/main/python/vessel_response/dtmb_lateral_provider_v1/sources/5415M_with_correct_stabilizer_pos.IGS": "1d8dc6f4932a769d45e9d1a81aae5dcba9875ef3b591ca406be8cba165749666",
+    "src/main/python/vessel_response/dtmb_lateral_provider_v1/sources/forward_speed_2022.pdf": "a20132a64665260a7342e1952c38753641986eda09915967a3d6c29e491c462b",
+    "src/main/python/vessel_response/dtmb_lateral_provider_v1/sources/finite_wing_RM2935.pdf": "0110953487a4a00ed7df979db170a5d4f3a9d5e117c68251f62c844f8bba35f4",
+    "src/main/python/vessel_response/dtmb_lateral_provider_v1/sources/propeller_position.pdf": "38e0d4edc48c535603d52095ddd0a74f10431d76d75a91736276fa7adced4820",
+    "src/main/python/vessel_response/dtmb_term_ownership_v1/M_p05.txt": "27a94da791d2c99072fb3ffe0cd3155dd2eda0350902d7a9207311aba34f0053",
+    "src/main/python/vessel_response/dtmb_term_ownership_v1/M_p11.txt": "25e11992544b74493fddb065a2e405195025295176b790d737ac563572230bdd",
+    "src/main/python/vessel_response/dtmb_term_ownership_v1/M_p18.txt": "26beed06a8e9f163cb2dee1fce2bc17dea71b4b4c94429c63fddeec3cd407fc5",
+    "src/main/python/vessel_response/dtmb_term_ownership_v1/W_p03.txt": "89f5662454a8fe2e57a9bec50fe9ff3a6a1d608e7bba0327ca5c3e40cdcd2c9c",
+    "src/main/python/vessel_response/dtmb_term_ownership_v1/W_p16.txt": "389deb9736287219eed829f8ec0cfb78dfade76febe1a96ee9e635686e201d43"
+  },
+  "protected_hashes": {
+    "src/main/python/vessel_response/dtmb_passive_decay_t1_v1/candidate.json": "5adab026d41324da7a08b15cd36f9a0d5c0fc70ad72c3029a128ff5b77eb3f80",
+    "src/main/python/vessel_response/dtmb_passive_decay_t1_v1/protocol.json": "068a6268d972dbcce63b769f509f3dbb13131642c9c70214066c6930dadc2468",
+    "src/main/python/vessel_response/dtmb_passive_wave_prediction_v1/run_contract.json": "ae8f8547d952377c38b6b7cdae30e34247cf145f43e285368c2618273f355a34",
+    "src/main/python/vessel_response/dtmb_passive_wave_prediction_v1/run_prediction.py": "ae07f85a8387ea2262c434122f44861a110929e2fe608bb819f65561c822ca4d",
+    "src/main/python/vessel_response/dtmb_passive_wave_prediction_v1/summary.json": "f75e56f81a5287f40bab10bdcecb8111b5e22c9f214618c0761c8c37abbf14d6",
+    "src/main/python/vessel_response/dtmb_passive_wave_prediction_v1/sealed_prediction.json": "d5fd462f2f1fd889903541a05a73a125cfdfbc97dfd49d424e3336e7f2eb6a0f"
+  },
+  "frequencies": [
+    0.575,
+    0.675,
+    0.875
+  ],
+  "indices": [
+    9,
+    16,
+    29
+  ],
+  "strides": [
+    4,
+    2
+  ],
+  "foils": [
+    {
+      "name": "fin_port",
+      "r": [
+        -0.09147338507683855,
+        8.256071087455476,
+        -6.352564855324102
+      ],
+      "n": [
+        0.0,
+        0.75378217807448,
+        0.6571243626721605
+      ],
+      "area": 6.0257700000000005,
+      "span": 2.0,
+      "chord": 3.0,
+      "aspect_ratio": 0.66381557875591,
+      "lift_slope_per_rad": 1.015482499459378,
+      "mean_inflow_m_s": 9.256149419710122,
+      "rudder_P": 0.0
+    },
+    {
+      "name": "fin_starboard",
+      "r": [
+        -0.09147338507683855,
+        -8.256071087455476,
+        -6.352564855324102
+      ],
+      "n": [
+        0.0,
+        0.75378217807448,
+        -0.6571243626721605
+      ],
+      "area": 6.0257700000000005,
+      "span": 2.0,
+      "chord": 3.0,
+      "aspect_ratio": 0.66381557875591,
+      "lift_slope_per_rad": 1.015482499459378,
+      "mean_inflow_m_s": 9.256149419710122,
+      "rudder_P": 0.0
+    },
+    {
+      "name": "rudder_port",
+      "r": [
+        -67.41822362190874,
+        5.5912353522635785,
+        -4.972722128342262
+      ],
+      "n": [
+        0.0,
+        0.9659160793100651,
+        0.2588554185839504
+      ],
+      "area": 15.4,
+      "span": 4.4,
+      "chord": 3.5,
+      "aspect_ratio": 1.2571428571428573,
+      "lift_slope_per_rad": 1.8107149645898721,
+      "mean_inflow_m_s": 9.256149419710122,
+      "rudder_P": -0.8
+    },
+    {
+      "name": "rudder_starboard",
+      "r": [
+        -67.41822362190874,
+        -5.5912353522635785,
+        -4.972722128342262
+      ],
+      "n": [
+        0.0,
+        0.9659160793100651,
+        -0.2588554185839504
+      ],
+      "area": 15.4,
+      "span": 4.4,
+      "chord": 3.5,
+      "aspect_ratio": 1.2571428571428573,
+      "lift_slope_per_rad": 1.8107149645898721,
+      "mean_inflow_m_s": 9.256149419710122,
+      "rudder_P": -0.8
+    }
+  ],
+  "candidate_sha256": "5adab026d41324da7a08b15cd36f9a0d5c0fc70ad72c3029a128ff5b77eb3f80",
+  "frame": "h-frame displacement (y,phi,psi), x forward/y port/z up; exp(-i*omega_e*t); CG unchanged",
+  "provider": "Z[:,q]=-omega_e^2*M[:,q]-R[:,q]-H_appendage[:,q]; G=Froll-Zrq solve(Zqq,Fq)",
+  "source_basis": "Donatini2022 Eq12/13/26; RM2935 Eq29; official corrected SIMMAN IGES; W Table1/5; M Table3",
+  "control": "Nominal common c0=c1: rudder P=-0.8, D=A=offset=0, passive fins. Published CFD/PF approximation; actual decay/wave controller correspondence UNKNOWN.",
+  "inflow": "Incident + bare-hull diffraction + bare-hull radiation velocity, one-way foil lift. Mean axial U; wake, propeller acceleration, wall/endplate effects and feedback from foil-induced flow omitted.",
+  "geometry": "Symmetrized CAD principal-face centroids and fitted normals, n_x=0 nominal zero camber. Table areas/span; CAD not used to replace frozen loading/hull.",
+  "lift": "Helmbold finite-wing Eq29, a0=2pi, isolated low-angle incompressible quasi-steady foil approximation; not a validated attached marine-foil law.",
+  "damping": "Frozen alpha/I/C/beta; three-point transfer uses small-amplitude tangent alpha, beta derivative at zero=0. No spectral SD or quadratic closure inferred from three points.",
+  "hull_viscosity": "No new hull manoeuvring viscous derivatives; radiation column retains its signed complex force. Missing viscous lateral forces are an explicit model limitation.",
+  "comparison": "105-degree data already seen; no target file loaded or scored. Future point changes are development diagnostics, not unseen validation.",
+  "checks": {
+    "mesh_effective_forcing_relative_max": 0.05,
+    "scaled_matrix_condition_max": 1000000.0,
+    "cache_force_relative_max": 1e-08,
+    "finite_required": true
+  },
+  "total_RHS": 18,
+  "per_worker_timeout_s": 240,
+  "total_timeout_s": 1200,
+  "new_fit_parameters": 0,
+  "physical_validation_passed": false
+}

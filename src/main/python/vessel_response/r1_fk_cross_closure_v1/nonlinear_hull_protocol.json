@@ -1,0 +1,21 @@
+{
+ "date":"2026-10-20",
+ "scope":"Restore sourced nonlinear horizontal hull terms already present in the original MMG idea; no new states, new free parameters or hydrodynamic solve",
+ "reason":"Numerically converged geometric-input pilot improves45deg yaw amplitude and beam sway, but excites an overly weakly damped slow yaw mode. Current source-total linear derivatives omit the same source's nonlinear velocity terms. Restore exactly those fixed Table13 Appended terms before considering any new empirical residual input.",
+ "source":"Franceschi etal2021 DOI10.3390/jmse9060665 p25 Table13, Appended. Image checked. Same close-but-not-identical loading and18/20kn caveat as source total linear block.",
+ "X":{"vv":-0.00571,"rr":-0.00131,"vr":0.000857},
+ "Y":{"v_abs_v":-0.0317,"r_abs_r":-0.00168,"v2r":0.00195,"vr2":-0.00149},
+ "N":{"v_abs_v":-0.00231,"r_abs_r":-0.0000784,"v2r":-0.0286,"vr2":-0.00752},
+ "normalization":"v_mid=v_CG+0.683*r; vprime=v_mid/U, rprime=r*L/U. Force=.5rhoU²L² times X/Y, moment=.5rhoU²L³ times N; N_CG=N_mid+0.683Y. source starboard/down vs our port/up both Y,N reverse; all odd lateral polynomial terms have invariant coefficients.",
+ "ownership":"Add only quadratic/cubic terms to the source-total linear velocity closure; no linear derivatives, added mass, passive foils or control gains duplicated. Roll equation and its calibrated parameters stay unchanged. One-way conditional roll remains explicit.",
+ "steady_trim":"Center nonlinear forces for fluctuation statistics at the observed prescribed mean speed/heading. Do not claim prediction of mean speed loss or mean trim equilibrium.",
+ "solver":"Periodic full-record fixed point using existing linear inverse, numerical relaxation0.25, maximum60iterations, relative RMS iterate residual1e-3 in all response channels with floor1e-5SI for u,v and1e-6rad for psi,r. Relaxation is a numerical method, not physical coefficient. No best-iteration selection; failure remains nonconverged.",
+ "pilot_cases":[45,90],
+ "pilot_seed":20261018,
+ "physical_candidate":"Combined geometric increments plus all fixed sourced nonlinear terms, not selection of whichever subterm scores best.",
+ "old_parameters_unchanged":true,
+ "new_free_parameters":0,
+ "max_wall_seconds":1200,
+ "deadline_UTC":"2026-10-20T05:15:00+00:00",
+ "no_automatic_admission":"Converged numerics alone are not physical validation. Report amplitude, period, all channels and loading/controller limitations."
+}

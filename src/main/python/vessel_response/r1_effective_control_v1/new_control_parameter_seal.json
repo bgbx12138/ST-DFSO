@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-20",
+  "effective_control_parameters": [
+    1.033856722263917,
+    5.439626573081959
+  ],
+  "optimizer_success": false,
+  "termination_message": "The maximum number of function evaluations is exceeded.",
+  "active_bound": false,
+  "unique_evaluations": 28,
+  "development_residuals": [
+    -0.23251387177220667,
+    0.1214875590475906,
+    -0.5341414728635543,
+    -0.35025655341606426,
+    0.013727864595540536,
+    -0.24068798468943578
+  ],
+  "development_predictions": [
+    0.7434013525215323,
+    18.394265927310297,
+    0.12485470395220583,
+    1.4484670556176216,
+    71.08923541034531,
+    0.46772168126188585
+  ],
+  "identifiability": {
+    "rank": 2,
+    "normalized_condition": 5.289632742053083,
+    "sensitivity": [
+      [
+        0.17409555203125313,
+        -0.032065766363859466
+      ],
+      [
+        0.13735601956840063,
+        -0.02640302757508648
+      ],
+      [
+        0.011045050186975906,
+        0.006212725766412601
+      ],
+      [
+        0.14518390094689912,
+        -0.06352301381195172
+      ],
+      [
+        0.14770276641514268,
+        -0.04916856887262599
+      ],
+      [
+        0.003040377162039434,
+        0.00016599777848439533
+      ]
+    ],
+    "base_forward_converged": true
+  },
+  "protocol_sha256": "04cea2f0631911ad3128c75abffca27416b4105db232f6eaedf8c6eac14e7cff",
+  "physical_controller_not_uniquely_identified": true,
+  "candidate_admission": false,
+  "wall_seconds": 446.7656174,
+  "all_old_parameter_seals_unchanged": true
+}
